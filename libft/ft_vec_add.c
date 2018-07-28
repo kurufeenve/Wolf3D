@@ -12,7 +12,7 @@
 
 #include "includes/libft.h"
 
-int		ft_vec_add(t_vector v1, t_vector v2, t_vector *res)
+void	ft_vec_add(t_vector v1, t_vector v2, t_vector *res)
 {
 	res->x = v1.x + v2.x;
 	res->y = v1.y + v2.y;

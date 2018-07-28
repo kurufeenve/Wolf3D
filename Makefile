@@ -14,7 +14,7 @@ NAME = wolf3d
 
 HEADER = wolf3d.h
 
-SRC = main.c
+SRC = main.c map.c
 
 SRCDIR = src
 
