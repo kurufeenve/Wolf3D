@@ -17,7 +17,8 @@ int		main(int argc, char** argv)
 	t_general	g;
 
 	if (argc != 2 || validation(&g, argv[1]) != 1)
-		ft_putstr("MAP ERROR");
+		ft_putstr("MAP ERROR\n");
+	read_map(&g, argv[1]);
 	g.size_x = 1000;
 	g.size_y = 1000;
 	if ((g.init = mlx_init()) == NULL ||
@@ -64,19 +65,32 @@ int		key_hook(int key, void *ptr)
 void	pixel_color(t_general *g)
 {
 	t_color	col;
-	int		y;
-	int		x;
+	int	xi;
+	int	yi;
+	int	x1 = 0;
+	int	x2 = 999;
+	int	y1 = 99;
+	int	y2 = 899;
+	int	perspective_x = 10;
+	int	perspective_y = 8;
 
 	col.color = 0xFFFFFF;
-	y = 0;
-	while (y < 1000)
+	while (x2 - x1 > 0 && y1 < 499 && y2 > 499)
 	{
-		x = 0;
-		while (x < 1000)
+		yi = y1;
+		while (yi < y2)
 		{
-			put_pixel(g, x, y, col);
-			x++;
+			printf("x1 = %d, yi = %d\n", x1, yi);
+			put_pixel(g, x1, yi, col);
+			yi++;
 		}
-		y++;
+		put_pixel(g, x1, y1, col);
+		put_pixel(g, x2, y1, col);
+		put_pixel(g, x1, y2, col);
+		put_pixel(g, x2, y2, col);
+		x1 += perspective_x;
+		x2 -= perspective_x;
+		y1 += perspective_y;
+		y2 -= perspective_y;
 	}
 }

@@ -52,10 +52,11 @@ typedef struct		s_general
     char            *line;
     int             len_buff;
     int             i;
+	int				j;
     char            **buff;
     int             len;
     int             rows;
-	t_point			*points;
+	int				**points;
 }					t_general;
 
 int					exit_x(void);
@@ -63,5 +64,6 @@ int					key_hook(int key, void *ptr);
 void				put_pixel(t_general *g, int x, int y, t_color color);
 void				pixel_color(t_general *g);
 int		            validation(t_general *g, char *filename);
+int					read_map(t_general *g, char *filename);
 
 #endif

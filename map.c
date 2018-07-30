@@ -42,9 +42,23 @@ int		validation(t_general *g, char *filename)
 
 int		read_map(t_general *g, char *filename)
 {
-	g->i = 0;
-	if ((gen->fd = open(filename, O_RDONLY)) < 0)
+	g->j = 0;
+	if ((g->fd = open(filename, O_RDONLY)) < 0)
 		return (0);
-	g->points = (t_point *)malloc(sizeof(t_point) * g->rows * g->len);
-	
+	g->points = (int **)malloc(sizeof(int *) * g->rows);
+	while (g->j < g->rows && get_next_line(g->fd, &g->line) > 0)
+	{
+		g->i = 0;
+		g->buff = ft_strsplit(g->line, ' ');
+		g->points[g->j] = (int *)malloc(sizeof(int) * g->len);
+		while (g->i < g->len && g->buff[g->i] != '\0')
+		{
+			g->points[g->j][g->i] = ft_atoi(g->buff[g->i]);
+			g->i++;
+		}
+		ft_strdel(&g->line);
+		ft_chararrdel(g->buff, &g->buff);
+		g->j++;
+	}
+	return (1);
 }
