@@ -19,11 +19,11 @@ int		main(int argc, char** argv)
 	if (argc != 2 || validation(&g, argv[1]) != 1)
 		ft_putstr("MAP ERROR\n");
 	read_map(&g, argv[1]);
-	g.size_x = 1000;
-	g.size_y = 1000;
+	g.size_x = 1024;
+	g.size_y = 768;
 	if ((g.init = mlx_init()) == NULL ||
 		(g.win = mlx_new_window(g.init,
-		g.size_x, g.size_y, "test")) == NULL || (g.img =
+		g.size_x, g.size_y, "Wolf3D")) == NULL || (g.img =
 		mlx_new_image(g.init, g.size_x, g.size_y)) == NULL ||
 		(g.image = mlx_get_data_addr(g.img, &g.bpp, &g.val,
 		&g.ed)) == NULL)
@@ -68,11 +68,11 @@ void	pixel_color(t_general *g)
 	int	xi;
 	int	yi;
 	int	x1 = 0;
-	int	x2 = 999;
+	int	x2 = 1023;
 	int	y1 = 99;
-	int	y2 = 899;
-	int	perspective_x = 10;
-	int	perspective_y = 8;
+	int	y2 = 667;
+	int	perspective_x = 50;
+	int	perspective_y = 40;
 
 	col.color = 0xFFFFFF;
 	while (x2 - x1 > 0 && y1 < 499 && y2 > 499)
@@ -80,14 +80,21 @@ void	pixel_color(t_general *g)
 		yi = y1;
 		while (yi < y2)
 		{
-			printf("x1 = %d, yi = %d\n", x1, yi);
 			put_pixel(g, x1, yi, col);
 			yi++;
 		}
-		put_pixel(g, x1, y1, col);
-		put_pixel(g, x2, y1, col);
-		put_pixel(g, x1, y2, col);
-		put_pixel(g, x2, y2, col);
+		xi = x1;
+		while (xi < x2)
+		{
+			put_pixel(g, xi, y2, col);
+			xi++;
+		}
+		yi = y1;
+		while (yi < y2)
+		{
+			put_pixel(g, x2, yi, col);
+			yi++;
+		}
 		x1 += perspective_x;
 		x2 -= perspective_x;
 		y1 += perspective_y;
