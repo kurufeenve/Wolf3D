@@ -14,7 +14,7 @@
 # define WOLF3D_H
 
 # include "libft/includes/libft.h"
-# include <OpenCL/opencl.h>
+# include <time.h>
 # include <math.h>
 # include <fcntl.h>
 # include <sys/types.h>
@@ -79,13 +79,22 @@ typedef struct		s_general
 	int				step_y;
 	int				hit;
 	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			frame_time;
+	t_color			color;
 }					t_general;
 
 int					exit_x(void);
 int					key_hook(int key, void *ptr);
 void				put_pixel(t_general *g, int x, int y, t_color color);
-void				pixel_color(t_general *g);
 int		            validation(t_general *g, char *filename);
 int					read_map(t_general *g, char *filename);
+void				raycaster(t_general *g);
+void				vert_line_draw(t_general *g);
+void				ft_clearscr(t_general *gen);
+void				ft_screen_stuff(t_general *g);
+void				ft_move(t_general *g, double move);
 
 #endif
