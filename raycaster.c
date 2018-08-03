@@ -14,8 +14,6 @@
 
 void	raycaster(t_general *g)
 {
-	g->plane_x = 0;
-	g->plane_y = 0.66;
 	g->newtime = 0;
 	g->oldtime = 0;
 	g->i = 0;
@@ -88,7 +86,11 @@ void	raycaster(t_general *g)
 		else
 			g->color.color = 0xFFFF00;
 		if (g->side == 1)
-			g->color.color /= 2;
+		{
+			g->color.channel[0] /= 2;
+			g->color.channel[1] /= 2;
+			g->color.channel[2] /= 2;
+		}
 		vert_line_draw(g);
 		g->i++;
 	}

@@ -20,6 +20,8 @@ int		main(int argc, char** argv)
 	g.pos_y = 12;
 	g.dir_x = -1;
 	g.dir_y = 0;
+	g.plane_x = 0;
+	g.plane_y = 0.66;
 	if (argc != 2 || validation(&g, argv[1]) != 1)
 		ft_putstr("MAP ERROR\n");
 	read_map(&g, argv[1]);
@@ -66,12 +68,22 @@ int		key_hook(int key, void *ptr)
 	}
 	else if (key == 13)
 	{
-		ft_move(g, 0.1);
+		ft_move(g, 0.2);
 		ft_screen_stuff(g);
 	}
 	else if (key == 1)
 	{
-		ft_move(g, -0.1);
+		ft_move(g, -0.2);
+		ft_screen_stuff(g);
+	}
+	else if (key == 2)
+	{
+		ft_turn(g, -0.078539816339745);
+		ft_screen_stuff(g);
+	}
+	else if (key == 0)
+	{
+		ft_turn(g, 0.078539816339745);
 		ft_screen_stuff(g);
 	}
 	return (0);
