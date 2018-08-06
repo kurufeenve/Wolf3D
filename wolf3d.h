@@ -97,5 +97,6 @@ void				ft_clearscr(t_general *gen);
 void				ft_screen_stuff(t_general *g);
 void				ft_move(t_general *g, double move);
 void				ft_turn(t_general *g, double turn);
+void				print_arr(int **arr, int i, int j);
 
 #endif

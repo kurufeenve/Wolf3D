@@ -16,7 +16,7 @@ int		main(int argc, char** argv)
 {
 	t_general	g;
 
-	g.pos_x = 22;
+	g.pos_x = 12;
 	g.pos_y = 12;
 	g.dir_x = -1;
 	g.dir_y = 0;

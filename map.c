@@ -23,7 +23,7 @@ int		validation(t_general *g, char *filename)
 		g->buff = ft_strsplit(g->line, ' ');
 		while (g->buff[g->i] != NULL)
 		{
-			if (ft_isnumber(g->buff[g->i]) == 1)
+			if (ft_isnumber(g->buff[g->i]) == 1 || g->buff[g->i][0] == 'P')
 				g->len_buff++;
 			g->i++;
 		}
@@ -53,6 +53,12 @@ int		read_map(t_general *g, char *filename)
 		g->points[g->j] = (int *)malloc(sizeof(int) * g->len);
 		while (g->i < g->len && g->buff[g->i] != '\0')
 		{
+			if (g->buff[g->i][0] == 'P')
+			{
+				g->pos_x = g->i;
+				g->pos_y = g->j;
+				g->buff[g->i][0] = '0';
+			}
 			g->points[g->j][g->i] = ft_atoi(g->buff[g->i]);
 			g->i++;
 		}
@@ -61,4 +67,23 @@ int		read_map(t_general *g, char *filename)
 		g->j++;
 	}
 	return (1);
+}
+
+void	print_arr(int **arr, int i, int j)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < j)
+	{
+		x = 0;
+		while (x < i)
+		{
+			printf("%d ", arr[j][i]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
 }

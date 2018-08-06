@@ -41,5 +41,5 @@ void	ft_turn(t_general *g, double turn)
 	old_plane_x = g->plane_x;
 	g->plane_x = g->plane_x * cos(turn) - g->plane_y * sin(turn);
 	g->plane_y = old_plane_x * sin (turn) + g->plane_y * cos(turn);
-	printf("dir_x = %f, dir_y = %f, plane_x = %f, plane_y = %f\n", g->dir_x, g->dir_y, g->plane_x, g->plane_y);
+	//printf("dir_x = %f, dir_y = %f, plane_x = %f, plane_y = %f\n", g->dir_x, g->dir_y, g->plane_x, g->plane_y);
 }
