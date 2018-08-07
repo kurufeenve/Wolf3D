@@ -84,6 +84,9 @@ typedef struct		s_general
 	int				draw_end;
 	double			frame_time;
 	int				**scr_buff;
+	int				text_x;
+	int				text_y;
+	size_t			**texture;
 	t_color			color;
 }					t_general;
 
@@ -99,6 +102,5 @@ void				ft_screen_stuff(t_general *g);
 void				ft_move(t_general *g, double move);
 void				ft_turn(t_general *g, double turn);
 void				print_arr(int **arr, int i, int j); // delete me)
-void				ft_screen_buffer(t_general *g);
 
 #endif

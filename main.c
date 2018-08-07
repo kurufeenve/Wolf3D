@@ -16,17 +16,19 @@ int		main(int argc, char** argv)
 {
 	t_general	g;
 
-	g.pos_x = 12;
-	g.pos_y = 12;
 	g.dir_x = -1;
 	g.dir_y = 0;
 	g.plane_x = 0;
 	g.plane_y = 0.66;
+	g.size_x = 1024;
+	g.size_y = 768;
+	g.text_x = 64;
+	g.text_y = 64;
+	g.scr_buff = ft_int_arr(g.size_x, g.size_y);
+	
 	if (argc != 2 || validation(&g, argv[1]) != 1)
 		ft_putstr("MAP ERROR\n");
 	read_map(&g, argv[1]);
-	g.size_x = 1024;
-	g.size_y = 768;
 	if ((g.init = mlx_init()) == NULL ||
 		(g.win = mlx_new_window(g.init,
 		g.size_x, g.size_y, "Wolf3D")) == NULL || (g.img =
