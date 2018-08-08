@@ -44,4 +44,26 @@ void	ft_turn(t_general *g, double turn)
 	//printf("dir_x = %f, dir_y = %f, plane_x = %f, plane_y = %f\n", g->dir_x, g->dir_y, g->plane_x, g->plane_y);
 }
 
-
+void	ft_textures(t_general *g)
+{
+	g->j = 0;
+	while (g->j < g->text_y)
+	{
+		g->i = 0;
+		while (g->i < g->text_x)
+		{
+			g->xor_color = (g->i * 256 / g->text_x) ^ (g->j * 256 / g->text_y);
+			g->y_color = g->j * 256 / g->text_x;
+			g->xy_color = g->j * 128 / g->text_y + g->i * 128 / g->text_x;
+			g->textures[0][g->text_x * g->j + g->i] = 65536 * 254 * (g->i != g->j && g->i != (g->text_x - g->j));
+			g->textures[1][g->text_x * g->j + g->i] = g->xy_color + 256 * g->xy_color + 65536 * g->xy_color;
+			g->textures[2][g->text_x * g->j + g->i] = 256 * g->xy_color + 65526 * g->xy_color;
+			g->textures[3][g->text_x * g->j + g->i] = g->xor_color + 256 * g->xor_color + 65536 * g->xor_color;
+			g->textures[4][g->text_x * g->j + g->i] = 256 * g->xor_color;
+			g->textures[5][g->text_x * g->j + g->i] = 65536 * 192 * (g->i % 16 && g->j % 16);
+			g->textures[6][g->text_x * g->j + g->i] = 65536 * g->y_color;
+			g->textures[7][g->text_x * g->j + g->i] = 128 + 256 * 128 + 65536 * 128;
+		}
+		g->j++;
+	}
+}

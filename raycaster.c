@@ -75,21 +75,26 @@ void	raycaster(t_general *g)
 			g->draw_start = 0;
 		if (g->draw_end > g->size_y)
 			g->draw_end = g->size_y - 1;
-		if (g->points[g->map_y][g->map_x] == 1) // may be you should read the map reverce. [x][y]
-			g->color.color = 0xFF0000;
-		else if (g->points[g->map_y][g->map_x] == 2)
-			g->color.color = 0x00FF00;
-		else if (g->points[g->map_y][g->map_x] == 3)
-			g->color.color = 0x0000FF;
-		else if (g->points[g->map_y][g->map_x] == 4)
-			g->color.color = 0xFFFFFF;
+		g->text_num = g->points[g->map_y][g->map_x] - 1;
+		if (g->side == 0)
+			g->wall_x = g->pos_y + g->perp_wall_dist * g->ray_dir_y;
 		else
-			g->color.color = 0xFFFF00;
+			g->wall_x = g->pos_x + g->perp_wall_dist * g->ray_dir_x;
+		g->wall_x -= floor(g->wall_x);
+		g->text_xx = (int)(g->wall_x * (double)g->text_x);
+		if (g->side == 0 && g->ray_dir_x > 0)
+			g->text_xx = g->text_x - g->text_xx - 1;
+		if (g->side == 1 && g->ray_dir_y < 0)
+			g->text_xx = g->text_x - g->text_xx - 1;
 		if (g->side == 1)
 		{
 			g->color.channel[0] /= 2;
 			g->color.channel[1] /= 2;
 			g->color.channel[2] /= 2;
+		}
+		while (g->draw_start < g->draw_end)
+		{
+			g->draw = g->draw_start 
 		}
 		vert_line_draw(g);
 		g->i++;
@@ -98,8 +103,11 @@ void	raycaster(t_general *g)
 
 void	vert_line_draw(t_general *g)
 {
-	while (g->draw_start <= g->draw_end)
+
+
+	while (g->draw_start < g->draw_end)
 	{
+		
 		put_pixel(g, g->i, g->draw_start, g->color);
 		g->draw_start++;
 	}

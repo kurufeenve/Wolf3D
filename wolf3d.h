@@ -29,14 +29,6 @@ typedef	union		u_color
 	unsigned char	channel[4];
 }					t_color;
 
-typedef struct		s_point
-{
-	double			x;
-	double			y;
-	double			z;
-	t_color			color;
-}					t_point;
-
 typedef struct		s_general
 {
 	void			*init;
@@ -84,9 +76,17 @@ typedef struct		s_general
 	int				draw_end;
 	double			frame_time;
 	int				**scr_buff;
-	int				text_x;
-	int				text_y;
-	size_t			**texture;
+	int				text_x; //texture width
+	int				text_y; //texture heght
+	int				**textures;
+	int				xor_color;
+	int				y_color;
+	int				xy_color;
+	int				text_num;
+	double			wall_x;
+	int				text_xx;
+	int				text_yy;
+	int				draw;
 	t_color			color;
 }					t_general;
 
