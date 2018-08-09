@@ -92,23 +92,44 @@ void	raycaster(t_general *g)
 			g->color.channel[1] /= 2;
 			g->color.channel[2] /= 2;
 		}
-		while (g->draw_start < g->draw_end)
+		g->start = g->draw_start;
+		//printf("start = %d, end = %d\n", g->draw_start, g->draw_end);
+		while (g->start < g->draw_end)
 		{
-			g->draw = g->draw_start 
+			g->draw = g->start * 256 - g->size_y * 128 + g->line_height * 128;
+			g->text_yy = ((g->draw * g->text_y) / g->line_height) / 256;
+			//printf("textures[num] = %d, text_yy = %d\n", g->text_num, g->text_yy);
+			g->color.color = g->textures[g->text_num][g->text_y * g->text_yy + g->text_xx];
+			//printf("color = %x\n", g->color.color);
+			if (g->side == 1)
+				g->color.color = (g->color.color >> 1) & 8355711;
+			g->scr_buff[g->start][g->i] = g->color.color;
+			//printf("scr_buff = %x\n", g->scr_buff[g->start][g->i]);
+			g->start++;
 		}
-		vert_line_draw(g);
 		g->i++;
 	}
+	buffer_draw(g);
 }
 
-void	vert_line_draw(t_general *g)
+void	buffer_draw(t_general *g)
 {
+	t_color	color;
 
-
-	while (g->draw_start < g->draw_end)
+	//printf("start = %d, end = %d\n", g->draw_start, g->draw_end);
+	g->i = 0;
+	while (g->i < g->size_x)
 	{
-		
-		put_pixel(g, g->i, g->draw_start, g->color);
-		g->draw_start++;
+		g->start = g->draw_start;
+		while (g->start < g->draw_end)
+		{
+			color.color = g->scr_buff[g->start][g->i];
+			//printf("color = %x\n", color.color);
+			put_pixel(g, g->i, g->draw_start, color);
+			//printf("start = %d, end = %d, pixel = %x\n", g->start, g->draw_end, g->scr_buff[g->start][g->i]);
+			//g->scr_buff[g->start][g->i] = 0;
+			g->start++;
+		}
+		g->i++;
 	}
 }

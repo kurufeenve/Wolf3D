@@ -37,6 +37,7 @@ int		main(int argc, char** argv)
 		&g.ed)) == NULL)
 		return (0);
 	ft_clearscr(&g);
+	ft_textures(&g);
 	raycaster(&g);
 	mlx_put_image_to_window(g.init, g.win, g.img, 0, 0);
 	mlx_hook(g.win, 17, 1L << 17, exit_x, NULL);

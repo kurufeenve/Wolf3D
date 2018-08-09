@@ -63,6 +63,7 @@ void	ft_textures(t_general *g)
 			g->textures[5][g->text_x * g->j + g->i] = 65536 * 192 * (g->i % 16 && g->j % 16);
 			g->textures[6][g->text_x * g->j + g->i] = 65536 * g->y_color;
 			g->textures[7][g->text_x * g->j + g->i] = 128 + 256 * 128 + 65536 * 128;
+			g->i++;
 		}
 		g->j++;
 	}

@@ -87,6 +87,7 @@ typedef struct		s_general
 	int				text_xx;
 	int				text_yy;
 	int				draw;
+	int				start;
 	t_color			color;
 }					t_general;
 
@@ -96,11 +97,12 @@ void				put_pixel(t_general *g, int x, int y, t_color color);
 int		            validation(t_general *g, char *filename);
 int					read_map(t_general *g, char *filename);
 void				raycaster(t_general *g);
-void				vert_line_draw(t_general *g);
+void				buffer_draw(t_general *g);
 void				ft_clearscr(t_general *gen);
 void				ft_screen_stuff(t_general *g);
 void				ft_move(t_general *g, double move);
 void				ft_turn(t_general *g, double turn);
 void				print_arr(int **arr, int i, int j); // delete me)
+void				ft_textures(t_general *g);
 
 #endif
