@@ -121,6 +121,7 @@ void	buffer_draw(t_general *g)
 	g->i = 0;
 	while (g->i < g->size_x)
 	{
+		//printf("i = %d, start = %d, end = %d\n", g->i, g->draw_start, g->draw_end);
 		g->start = g->draw_start;
 		while (g->start < g->draw_end)
 		{
