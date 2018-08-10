@@ -110,6 +110,7 @@ void	raycaster(t_general *g)
 		g->i++;
 	}
 	buffer_draw(g);
+	ft_clean_buffer(g);
 }
 
 void	buffer_draw(t_general *g)
@@ -125,11 +126,25 @@ void	buffer_draw(t_general *g)
 		{
 			color.color = g->scr_buff[g->start][g->i];
 			//printf("color = %x\n", color.color);
-			put_pixel(g, g->i, g->draw_start, color);
-			//printf("start = %d, end = %d, pixel = %x\n", g->start, g->draw_end, g->scr_buff[g->start][g->i]);
-			//g->scr_buff[g->start][g->i] = 0;
+			put_pixel(g, g->i, g->start, color);
+			//printf("start = %d, end = %d, pixel = %x, g->i = %d\n", g->start, g->draw_end, g->scr_buff[g->start][g->i], g->i);
 			g->start++;
 		}
 		g->i++;
+	}
+}
+
+void	ft_clean_buffer(t_general *g)
+{
+	g->j = 0;
+	while (g->j < g->size_y)
+	{
+		g->i = 0;
+		while (g->i < g->size_x)
+		{
+			g->scr_buff[g->j][g->i] = 0;
+			g->i++;
+		}
+		g->j++;
 	}
 }
