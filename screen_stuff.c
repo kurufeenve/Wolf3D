@@ -46,25 +46,26 @@ void	ft_turn(t_general *g, double turn)
 
 void	ft_textures(t_general *g)
 {
-	g->j = 0;
-	while (g->j < g->text_y)
+	g->i = 0;
+	g->textures = (char **)malloc(sizeof(char *) * 8);
+	g->textures[0] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_x, &g->text_y);
+	g->textures[1] = mlx_xpm_file_to_image(g->init, "tex/colorstone.xpm", &g->text_x, &g->text_y);
+	g->textures[2] = mlx_xpm_file_to_image(g->init, "tex/eagle.xpm", &g->text_x, &g->text_y);
+	g->textures[3] = mlx_xpm_file_to_image(g->init, "tex/greystone.xpm", &g->text_x, &g->text_y);
+	g->textures[4] = mlx_xpm_file_to_image(g->init, "tex/mossy.xpm", &g->text_x, &g->text_y);
+	g->textures[5] = mlx_xpm_file_to_image(g->init, "tex/purplestone.xpm", &g->text_x, &g->text_y);
+	g->textures[6] = mlx_xpm_file_to_image(g->init, "tex/redbrick.xpm", &g->text_x, &g->text_y);
+	g->textures[7] = mlx_xpm_file_to_image(g->init, "tex/wood.xpm", &g->text_x, &g->text_y);
+	g->i = 0;
+	while (g->i < 8)
 	{
-		g->i = 0;
-		while (g->i < g->text_x)
+		if (g->textures[g->i] == NULL)
 		{
-			g->xor_color = (g->i * 256 / g->text_x) ^ (g->j * 256 / g->text_y);
-			g->y_color = g->j * 256 / g->text_x;
-			g->xy_color = g->j * 128 / g->text_y + g->i * 128 / g->text_x;
-			g->textures[0][g->text_x * g->j + g->i] = 65536 * 254 * (g->i != g->j && g->i != (g->text_x - g->j));
-			g->textures[1][g->text_x * g->j + g->i] = g->xy_color + 256 * g->xy_color + 65536 * g->xy_color;
-			g->textures[2][g->text_x * g->j + g->i] = 256 * g->xy_color + 65526 * g->xy_color;
-			g->textures[3][g->text_x * g->j + g->i] = g->xor_color + 256 * g->xor_color + 65536 * g->xor_color;
-			g->textures[4][g->text_x * g->j + g->i] = 256 * g->xor_color;
-			g->textures[5][g->text_x * g->j + g->i] = 65536 * 192 * (g->i % 16 && g->j % 16);
-			g->textures[6][g->text_x * g->j + g->i] = 65536 * g->y_color;
-			g->textures[7][g->text_x * g->j + g->i] = 128 + 256 * 128 + 65536 * 128;
-			g->i++;
+			ft_putstr("\n\n\n===    !!!Failed to upload texture #");
+			ft_putnbr(g->i);
+			ft_putstr("!!!    ===\n\n\n");
+			exit(0);
 		}
-		g->j++;
+		g->i++;
 	}
 }

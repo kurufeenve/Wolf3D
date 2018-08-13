@@ -70,7 +70,7 @@ void	raycaster(t_general *g)
 			g->perp_wall_dist = (g->map_y - g->pos_y + (1 - g->step_y) / 2) / g->ray_dir_y;
 		g->line_height = (int)(g->size_y / g->perp_wall_dist);
 		g->draw_start = -g->line_height / 2 + g->size_y / 2;
-		g->draw_end = g->line_height / 2 + g->size_y / 2;
+		g->draw_end = g->line_height / 2 + g->size_y / 2;   // shukaty tut!
 		if (g->draw_start < 0)
 			g->draw_start = 0;
 		if (g->draw_end > g->size_y)
@@ -86,12 +86,6 @@ void	raycaster(t_general *g)
 			g->text_xx = g->text_x - g->text_xx - 1;
 		if (g->side == 1 && g->ray_dir_y < 0)
 			g->text_xx = g->text_x - g->text_xx - 1;
-		if (g->side == 1)
-		{
-			g->color.channel[0] /= 2;
-			g->color.channel[1] /= 2;
-			g->color.channel[2] /= 2;
-		}
 		g->start = g->draw_start;
 		//printf("start = %d, end = %d\n", g->draw_start, g->draw_end);
 		while (g->start < g->draw_end)

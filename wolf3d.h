@@ -78,7 +78,7 @@ typedef struct		s_general
 	int				**scr_buff;
 	int				text_x; //texture width
 	int				text_y; //texture heght
-	int				**textures;
+	char			**textures;
 	int				xor_color;
 	int				y_color;
 	int				xy_color;

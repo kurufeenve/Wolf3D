@@ -25,7 +25,6 @@ int		main(int argc, char** argv)
 	g.text_x = 64;
 	g.text_y = 64;
 	g.scr_buff = ft_int_arr(g.size_x, g.size_y);
-	g.textures = ft_int_arr(g.text_x * g.text_y, 8);
 	if (argc != 2 || validation(&g, argv[1]) != 1)
 		ft_putstr("MAP ERROR\n");
 	read_map(&g, argv[1]);
