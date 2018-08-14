@@ -76,18 +76,21 @@ typedef struct		s_general
 	int				draw_end;
 	double			frame_time;
 	int				**scr_buff;
-	int				text_x; //texture width
-	int				text_y; //texture heght
+	int				text_w; //texture width
+	int				text_h; //texture heght
 	char			**textures;
 	int				xor_color;
 	int				y_color;
 	int				xy_color;
 	int				text_num;
 	double			wall_x;
-	int				text_xx;
-	int				text_yy;
-	int				draw;
+	int				text_x;
+	int				text_y;
+	double			draw;
 	int				start;
+	int				t_bpp;
+	int				t_val;
+	int				t_ed;
 	t_color			color;
 }					t_general;
 

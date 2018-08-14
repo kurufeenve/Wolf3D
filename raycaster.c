@@ -81,19 +81,23 @@ void	raycaster(t_general *g)
 		else
 			g->wall_x = g->pos_x + g->perp_wall_dist * g->ray_dir_x;
 		g->wall_x -= floor(g->wall_x);
-		g->text_xx = (int)(g->wall_x * (double)g->text_x);
+		g->text_x = (int)(g->wall_x * (double)g->text_w);
 		if (g->side == 0 && g->ray_dir_x > 0)
-			g->text_xx = g->text_x - g->text_xx - 1;
+			g->text_x = g->text_w - g->text_x - 1;
 		if (g->side == 1 && g->ray_dir_y < 0)
-			g->text_xx = g->text_x - g->text_xx - 1;
+			g->text_x = g->text_w - g->text_x - 1;
 		g->start = g->draw_start;
+		//printf("g->text_x = %d\n", g->text_x);
 		//printf("start = %d, end = %d\n", g->draw_start, g->draw_end);
 		while (g->start < g->draw_end)
 		{
-			g->draw = g->start * 256 - g->size_y * 128 + g->line_height * 128;
-			g->text_yy = ((g->draw * g->text_y) / g->line_height) / 256;
-			//printf("textures[num] = %d, text_yy = %d\n", g->text_num, g->text_yy);
-			g->color.color = g->textures[g->text_num][g->text_y * g->text_yy + g->text_xx];
+			g->draw = ((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
+			g->text_y = (int)g->draw;
+			//printf("g->draw = %d\n", (int)g->draw);
+			//printf("textures[num] = %d, text_y = %d, start = %d, end = %d, g->text_h = %d\n", g->text_num, g->text_y, g->start, g->draw_end, g->text_h);
+			g->color.channel[0] = g->textures[g->text_num][g->text_y * g->text_w * 4 + g->text_x * 4];
+			g->color.channel[1] = g->textures[g->text_num][g->text_y * g->text_w * 4 + g->text_x * 4 + 1];
+			g->color.channel[2] = g->textures[g->text_num][g->text_y * g->text_w * 4 + g->text_x * 4 + 2];
 			//printf("color = %x\n", g->color.color);
 			if (g->side == 1)
 				g->color.color = (g->color.color >> 1) & 8355711;
