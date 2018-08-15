@@ -71,7 +71,7 @@ void	raycaster(t_general *g)
 		g->line_height = (int)(g->size_y / g->perp_wall_dist);
 		g->draw_start = -g->line_height / 2 + g->size_y / 2;
 		g->draw_end = g->line_height / 2 + g->size_y / 2;   // shukaty tut!
-		printf("perp_wall_dist = %f, g->size_y = %d, line_height = %d, g->draw_start = %d, end = %d\n", g->perp_wall_dist, g->size_y, g->line_height, g->draw_start, g->draw_end);
+		//printf("perp_wall_dist = %f, g->size_y = %d, line_height = %d, g->draw_start = %d, end = %d\n", g->perp_wall_dist, g->size_y, g->line_height, g->draw_start, g->draw_end);
 		if (g->draw_start < 0)
 			g->draw_start = 0;
 		if (g->draw_end > g->size_y)
@@ -89,7 +89,7 @@ void	raycaster(t_general *g)
 			g->text_x = g->text_w - g->text_x - 1;
 		g->start = g->draw_start;
 		//printf("g->text_x = %d\n", g->text_x);
-		//printf("start = %d, end = %d\n", g->draw_start, g->draw_end);
+		printf("calculating: start = %d, end = %d i = %d\n", g->start, g->draw_end, g->i);
 		while (g->start < g->draw_end)
 		{
 			g->draw = ((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
@@ -120,7 +120,7 @@ void	buffer_draw(t_general *g)
 	g->i = 0;
 	while (g->i < g->size_x)
 	{
-		//printf("i = %d, start = %d, end = %d\n", g->i, g->draw_start, g->draw_end);
+		printf("drawing: start = %d, end = %d, i = %d\n", g->draw_start, g->draw_end, g->i);
 		g->start = g->draw_start;
 		while (g->start < g->draw_end)
 		{
