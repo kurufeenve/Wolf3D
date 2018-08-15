@@ -48,6 +48,14 @@ void	ft_textures(t_general *g)
 {
 	g->i = 0;
 	g->textures = (char **)malloc(sizeof(char *) * 8);
+	// g->textures[0] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[1] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[2] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[3] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[4] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[5] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[6] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	// g->textures[7] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
 	g->textures[0] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
 	g->textures[1] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, "tex/colorstone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
 	g->textures[2] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, "tex/eagle.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
@@ -56,12 +64,11 @@ void	ft_textures(t_general *g)
 	g->textures[5] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, "tex/purplestone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
 	g->textures[6] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, "tex/redbrick.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
 	g->textures[7] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, "tex/wood.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
-	g->i = 0;
 	// for (int i = 0; i < (g->text_w * g->text_h); i++)
 	// {
 	// 	printf("R:%d\tG:%d\tB:%d\tA:%d\n", (int)g->textures[0][i], (int)g->textures[0][i + 1], (int)g->textures[0][i + 2], (int)g->textures[0][i + 3]);
 	// }
-	// exit(0);
+	//exit(0);
 	while (g->i < 8)
 	{
 		if (g->textures[g->i] == NULL)

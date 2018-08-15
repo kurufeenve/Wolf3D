@@ -71,6 +71,7 @@ void	raycaster(t_general *g)
 		g->line_height = (int)(g->size_y / g->perp_wall_dist);
 		g->draw_start = -g->line_height / 2 + g->size_y / 2;
 		g->draw_end = g->line_height / 2 + g->size_y / 2;   // shukaty tut!
+		printf("perp_wall_dist = %f, g->size_y = %d, line_height = %d, g->draw_start = %d, end = %d\n", g->perp_wall_dist, g->size_y, g->line_height, g->draw_start, g->draw_end);
 		if (g->draw_start < 0)
 			g->draw_start = 0;
 		if (g->draw_end > g->size_y)

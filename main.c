@@ -70,21 +70,25 @@ int		key_hook(int key, void *ptr)
 	}
 	else if (key == 13)
 	{
+		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_move(g, 0.2);
 		ft_screen_stuff(g);
 	}
 	else if (key == 1)
 	{
+		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_move(g, -0.2);
 		ft_screen_stuff(g);
 	}
 	else if (key == 2)
 	{
+		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_turn(g, -0.078539816339745);
 		ft_screen_stuff(g);
 	}
 	else if (key == 0)
 	{
+		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_turn(g, 0.078539816339745);
 		ft_screen_stuff(g);
 	}
