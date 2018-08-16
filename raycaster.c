@@ -89,7 +89,8 @@ void	raycaster(t_general *g)
 			g->text_x = g->text_w - g->text_x - 1;
 		g->start = g->draw_start;
 		//printf("g->text_x = %d\n", g->text_x);
-		printf("calculating: start = %d, end = %d i = %d\n", g->start, g->draw_end, g->i);
+		//printf("calculating: start = %d, end = %d i = %d\n", g->start, g->draw_end, g->i);
+		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
 		while (g->start < g->draw_end)
 		{
 			g->draw = ((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
@@ -106,8 +107,10 @@ void	raycaster(t_general *g)
 			//printf("scr_buff = %x\n", g->scr_buff[g->start][g->i]);
 			g->start++;
 		}
+		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
 		g->i++;
 	}
+	print_arr(g->scr_buff, g->size_x, g->size_y);
 	buffer_draw(g);
 	ft_clean_buffer(g);
 }
@@ -116,19 +119,20 @@ void	buffer_draw(t_general *g)
 {
 	t_color	color;
 
+	//print_arr(g->scr_buff, g->size_x, g->size_y);
 	//printf("start = %d, end = %d\n", g->draw_start, g->draw_end);
 	g->i = 0;
 	while (g->i < g->size_x)
 	{
-		printf("drawing: start = %d, end = %d, i = %d\n", g->draw_start, g->draw_end, g->i);
-		g->start = g->draw_start;
-		while (g->start < g->draw_end)
+		//printf("drawing: start = %d, end = %d, i = %d\n", g->draw_start, g->draw_end, g->i);
+		g->j = 0;
+		while (g->j < g->size_y)
 		{
 			color.color = g->scr_buff[g->start][g->i];
-			//printf("color = %x\n", color.color);
+			//printf("color = %x, g->j = %d\n", color.color, g->j);
 			put_pixel(g, g->i, g->start, color);
 			//printf("start = %d, end = %d, pixel = %x, g->i = %d\n", g->start, g->draw_end, g->scr_buff[g->start][g->i], g->i);
-			g->start++;
+			g->j++;
 		}
 		g->i++;
 	}
@@ -137,10 +141,10 @@ void	buffer_draw(t_general *g)
 void	ft_clean_buffer(t_general *g)
 {
 	g->j = 0;
-	while (g->j < g->size_y)
+	while (g->j < g->size_y - 1)
 	{
 		g->i = 0;
-		while (g->i < g->size_x)
+		while (g->i < g->size_x - 1)
 		{
 			g->scr_buff[g->j][g->i] = 0;
 			g->i++;

@@ -75,8 +75,10 @@ void	print_arr(int **arr, int i, int j)
 	int		y;
 
 	y = 0;
+	printf("test\n");
 	while (y < j)
 	{
+		printf("test1\n");
 		x = 0;
 		while (x < i)
 		{

@@ -19,11 +19,16 @@ int		**ft_int_arr(int x, int y)
 	int		j;
 
 	j = 0;
-	i = 0;
 	arr = (int **)malloc(sizeof(int *) * y);
 	while (j < y)
 	{
 		arr[j] = (int *)malloc(sizeof(int) * x);
+		i = 0;
+		while (i < x)
+		{
+			arr[j][i] = 0;
+			i++;
+		}
 		j++;
 	}
 	return (arr);
