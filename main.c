@@ -24,10 +24,7 @@ int		main(int argc, char** argv)
 	g.size_y = 768;
 	g.text_w = 64;
 	g.text_h = 64;
-	g.scr_buff = ft_int_arr(g.size_x, g.size_y);
-	printf("scr_buff[767][1023] = %d\n", g.scr_buff[767][1023]);
-	print_arr(g.scr_buff, g.size_x - 1, g.size_y - 1);
-	printf("end of print\n\n\n");
+	ft_int_arr(&g.scr_buff, g.size_x, g.size_y);
 	if (argc != 2 || validation(&g, argv[1]) != 1)
 		ft_putstr("MAP ERROR\n");
 	read_map(&g, argv[1]);

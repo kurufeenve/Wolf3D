@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_int_arr.c                                       :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vordynsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 13:40:46 by vordynsk          #+#    #+#             */
-/*   Updated: 2018/08/07 13:40:49 by vordynsk         ###   ########.fr       */
+/*   Created: 2018/08/17 16:53:21 by vordynsk          #+#    #+#             */
+/*   Updated: 2018/08/17 16:53:22 by vordynsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void		ft_int_arr(int ***arr, int x, int y)
+char	*ft_strrev(char *str)
 {
-	int		i;
-	int		j;
+	char	*buff;
+	char	*res;
+	int		len;
 
-	j = 0;
-	if (!(*arr = (int **)malloc(sizeof(int *) * y)))
-			exit(0);
-	while (j < y)
+	len = ft_strlen(str);
+	res = ft_strnew(len);
+	buff = str;
+	while (len > 0)
 	{
-		if (!((*arr)[j] = (int *)malloc(sizeof(int) * x)))
-			exit(0);
-		i = 0;
-		while (i < x)
-		{
-			(*arr)[j][i] = 0;
-			i++;
-		}
-		j++;
+		len--;
+		res[len] = *buff;
+		buff++;
 	}
+	ft_strcpy(str, res);
+	ft_strdel(&res);
+	return (str);
 }

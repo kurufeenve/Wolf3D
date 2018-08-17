@@ -93,8 +93,14 @@ void	raycaster(t_general *g)
 		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
 		while (g->start < g->draw_end)
 		{
-			g->draw = ((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
-			g->text_y = (int)g->draw;
+			if (g->line_height < g->size_y)
+				g->text_y = (int)((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
+			else if (g->line_height > g->size_y)
+			{
+				g->draw = (int)((double)g->line_height / (double)g->size_y * (double)g->text_h);
+				printf("g->draw = %d\n", g->draw);
+			}
+			// printf("g->line_heght = %d\n", g->line_height);
 			//printf("g->draw = %d\n", (int)g->draw);
 			//printf("textures[num] = %d, text_y = %d, start = %d, end = %d, g->text_h = %d\n", g->text_num, g->text_y, g->start, g->draw_end, g->text_h);
 			g->color.channel[0] = g->textures[g->text_num][g->text_y * g->text_w * 4 + g->text_x * 4];
@@ -104,13 +110,13 @@ void	raycaster(t_general *g)
 			if (g->side == 1)
 				g->color.color = (g->color.color >> 1) & 8355711;
 			g->scr_buff[g->start][g->i] = g->color.color;
-			//printf("scr_buff = %x\n", g->scr_buff[g->start][g->i]);
+			//printf("scr_buff[%d] = %x\n", g->start, g->scr_buff[g->start][g->i]);
 			g->start++;
 		}
 		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
 		g->i++;
 	}
-	print_arr(g->scr_buff, g->size_x, g->size_y);
+	//print_arr(g->scr_buff, g->size_x, g->size_y);
 	buffer_draw(g);
 	ft_clean_buffer(g);
 }
@@ -128,10 +134,10 @@ void	buffer_draw(t_general *g)
 		g->j = 0;
 		while (g->j < g->size_y)
 		{
-			color.color = g->scr_buff[g->start][g->i];
+			color.color = g->scr_buff[g->j][g->i];
 			//printf("color = %x, g->j = %d\n", color.color, g->j);
-			put_pixel(g, g->i, g->start, color);
-			//printf("start = %d, end = %d, pixel = %x, g->i = %d\n", g->start, g->draw_end, g->scr_buff[g->start][g->i], g->i);
+			put_pixel(g, g->i, g->j, color);
+			//printf("start = %d, end = %d, pixel[%d][%d] = %x\n", g->start, g->draw_end, g->j, g->i, g->scr_buff[g->j][g->i]);
 			g->j++;
 		}
 		g->i++;
