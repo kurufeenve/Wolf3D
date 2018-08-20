@@ -97,10 +97,12 @@ void	raycaster(t_general *g)
 				g->text_y = (int)((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
 			else if (g->line_height > g->size_y)
 			{
-				g->draw = (int)((double)g->line_height / (double)g->size_y * (double)g->text_h);
-				printf("g->draw = %d\n", g->draw);
+				g->draw = ((double)g->draw_end - (double)g->start) / g->size_y * ((double)g->size_y / (double)g->line_height * (double)g->text_h);
+				g->text_y = (int)(64 - ((double)g->text_h - g->draw) / 2 + g->draw);
+				printf("g->draw = %f, g->draw_end = %d, g->start = %d\n", g->draw, g->draw_end, g->start);
 			}
-			// printf("g->line_heght = %d\n", g->line_height);
+			// printf("g->text_y = %f\n", g->text_y);
+			// printf("g->line_height = %d\n", g->line_height);
 			//printf("g->draw = %d\n", (int)g->draw);
 			//printf("textures[num] = %d, text_y = %d, start = %d, end = %d, g->text_h = %d\n", g->text_num, g->text_y, g->start, g->draw_end, g->text_h);
 			g->color.channel[0] = g->textures[g->text_num][g->text_y * g->text_w * 4 + g->text_x * 4];
