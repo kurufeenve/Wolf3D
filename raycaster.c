@@ -88,19 +88,23 @@ void	raycaster(t_general *g)
 		if (g->side == 1 && g->ray_dir_y < 0)
 			g->text_x = g->text_w - g->text_x - 1;
 		g->start = g->draw_start;
+		if (g->draw_end > 767)
+			g->draw_end = 767;
 		//printf("g->text_x = %d\n", g->text_x);
 		//printf("calculating: start = %d, end = %d i = %d\n", g->start, g->draw_end, g->i);
 		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
 		while (g->start < g->draw_end)
 		{
 			if (g->line_height < g->size_y)
-				g->text_y = (int)((double)g->draw_end - (double)g->start) / (double)g->line_height * (double)g->text_h;
+				g->text_y = 63 - (int)((double)g->draw_end - (double)g->start) / (double)g->line_height * ((double)g->text_h - 1);
 			else if (g->line_height > g->size_y)
 			{
-				g->draw = ((double)g->draw_end - (double)g->start) / g->size_y * ((double)g->size_y / (double)g->line_height * (double)g->text_h);
-				g->text_y = (int)(64 - ((double)g->text_h - g->draw) / 2 + g->draw);
-				printf("g->draw = %f, g->draw_end = %d, g->start = %d\n", g->draw, g->draw_end, g->start);
+				g->draw = (63 - (double)g->size_y / (double)g->line_height * 63.0) / 2;
+				g->text_y = (int)(((double)g->size_y / (double)g->line_height) * (double)g->text_h / (double)g->size_y * (double)g->start + g->draw);
 			}
+			//printf("g->draw_end = %d, g->start = %d, g->draw = %f, line_heght = %d, g->text_y = %d, g->text_num = %d\n", g->draw_end, g->start, g->draw, g->line_height, g->text_y, g->text_num);
+			//if (g->text_y > 64)
+			//	break ;
 			// printf("g->text_y = %f\n", g->text_y);
 			// printf("g->line_height = %d\n", g->line_height);
 			//printf("g->draw = %d\n", (int)g->draw);
