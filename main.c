@@ -26,7 +26,10 @@ int		main(int argc, char** argv)
 	g.text_h = 64;
 	ft_int_arr(&g.scr_buff, g.size_x, g.size_y);
 	if (argc != 2 || validation(&g, argv[1]) != 1)
+	{
 		ft_putstr("MAP ERROR\n");
+		exit(0);
+	}
 	read_map(&g, argv[1]);
 	if ((g.init = mlx_init()) == NULL ||
 		(g.win = mlx_new_window(g.init,

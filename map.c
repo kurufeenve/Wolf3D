@@ -25,6 +25,8 @@ int		validation(t_general *g, char *filename)
 		{
 			if (ft_isnumber(g->buff[g->i]) == 1 || g->buff[g->i][0] == 'P')
 				g->len_buff++;
+			else if (ft_isalpha(g->buff[g->i][0]) == 1 && g->buff[g->i][0] != 'P')
+				return (0);
 			g->i++;
 		}
 		if (g->len == 0 || g->len == g->len_buff)

@@ -22,6 +22,7 @@ void	raycaster(t_general *g)
 		g->camera_x = 2 * g->i / (double)g->size_x - 1;
 		g->ray_dir_x = g->dir_x + g->plane_x * g->camera_x;
 		g->ray_dir_y = g->dir_y + g->plane_y * g->camera_x;
+		printf("g->ray_dir_x = %f, g->ray_dir_y = %f\n", g->ray_dir_x, g->ray_dir_y);
 		g->map_x = (int)g->pos_x;
 		g->map_y = (int)g->pos_y;
 		g->delta_dist_x = fabs(1 / g->ray_dir_x);
@@ -93,6 +94,10 @@ void	raycaster(t_general *g)
 		//printf("g->text_x = %d\n", g->text_x);
 		//printf("calculating: start = %d, end = %d i = %d\n", g->start, g->draw_end, g->i);
 		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
+		// if (g->text_num == 5 && g->dir_x)
+		// {
+
+		// }
 		while (g->start < g->draw_end)
 		{
 			if (g->line_height < g->size_y)
