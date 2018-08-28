@@ -22,7 +22,7 @@ void	raycaster(t_general *g)
 		g->camera_x = 2 * g->i / (double)g->size_x - 1;
 		g->ray_dir_x = g->dir_x + g->plane_x * g->camera_x;
 		g->ray_dir_y = g->dir_y + g->plane_y * g->camera_x;
-		printf("g->ray_dir_x = %f, g->ray_dir_y = %f\n", g->ray_dir_x, g->ray_dir_y);
+		//printf("g->ray_dir_x = %f, g->ray_dir_y = %f\n", g->ray_dir_x, g->ray_dir_y);
 		g->map_x = (int)g->pos_x;
 		g->map_y = (int)g->pos_y;
 		g->delta_dist_x = fabs(1 / g->ray_dir_x);
@@ -62,7 +62,7 @@ void	raycaster(t_general *g)
 				g->map_y += g->step_y;
 				g->side = 1;
 			}
-			if (g->points[g->map_y][g->map_x] > 0) // may be you should read the map reverce. [x][y]
+			if (g->points[g->map_y][g->map_x] > 0)
 				g->hit = 1;
 		}
 		if (g->side == 0)
@@ -71,7 +71,7 @@ void	raycaster(t_general *g)
 			g->perp_wall_dist = (g->map_y - g->pos_y + (1 - g->step_y) / 2) / g->ray_dir_y;
 		g->line_height = (int)(g->size_y / g->perp_wall_dist);
 		g->draw_start = -g->line_height / 2 + g->size_y / 2;
-		g->draw_end = g->line_height / 2 + g->size_y / 2;   // shukaty tut!
+		g->draw_end = g->line_height / 2 + g->size_y / 2;
 		//printf("perp_wall_dist = %f, g->size_y = %d, line_height = %d, g->draw_start = %d, end = %d\n", g->perp_wall_dist, g->size_y, g->line_height, g->draw_start, g->draw_end);
 		if (g->draw_start < 0)
 			g->draw_start = 0;
@@ -94,10 +94,19 @@ void	raycaster(t_general *g)
 		//printf("g->text_x = %d\n", g->text_x);
 		//printf("calculating: start = %d, end = %d i = %d\n", g->start, g->draw_end, g->i);
 		//printf("g->start = %d, g->draw_start = %d\n", g->start, g->draw_start);
-		// if (g->text_num == 5 && g->dir_x)
-		// {
-
-		// }
+		printf("g->dir_x = %f, g->dir_y = %f, g->plane_x = %f, g->plane_y = %f, g->side = %d\n", g->dir_x, g->dir_y, g->plane_x, g->plane_y, g->side);
+		if (g->text_num == 5 && g->side == 1 && g->pos_y < g->map_y)
+		{
+			g->text_num = g->text_num - 1;
+		}
+		else if (g->text_num == 5 && g->side == 0 && g->pos_x < g->map_x)
+		{
+			g->text_num = g->text_num - 2;
+		}
+		else if (g->text_num == 5 && g->side == 0 && g->pos_x > g->map_x)
+		{
+			g->text_num = g->text_num - 3;
+		}
 		while (g->start < g->draw_end)
 		{
 			if (g->line_height < g->size_y)

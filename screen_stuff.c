@@ -41,7 +41,7 @@ void	ft_turn(t_general *g, double turn)
 	old_plane_x = g->plane_x;
 	g->plane_x = g->plane_x * cos(turn) - g->plane_y * sin(turn);
 	g->plane_y = old_plane_x * sin (turn) + g->plane_y * cos(turn);
-	printf("g->dir_x = %f, g->dir_y = %f, g->plane_x = %f, g->plane_y = %f\n", g->dir_x, g->dir_y, g->plane_x, g->plane_y);
+	//printf("g->dir_x = %f, g->dir_y = %f, g->plane_x = %f, g->plane_y = %f\n", g->dir_x, g->dir_y, g->plane_x, g->plane_y);
 }
 
 void	ft_textures(t_general *g)
