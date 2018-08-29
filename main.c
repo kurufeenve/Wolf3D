@@ -25,19 +25,15 @@ int		main(int argc, char** argv)
 	g.text_w = 64;
 	g.text_h = 64;
 	ft_int_arr(&g.scr_buff, g.size_x, g.size_y);
-	if (argc != 2 || validation(&g, argv[1]) != 1)
+	if (argc != 2 || validation(&g, argv[1]) != 1 || read_map(&g, argv[1]) == 0
+		|| (g.init = mlx_init()) == NULL || (g.win = mlx_new_window(g.init,
+		g.size_x, g.size_y, "Wolf3D")) == NULL || (g.img = mlx_new_image(
+		g.init, g.size_x, g.size_y)) == NULL || (g.image = 
+		mlx_get_data_addr(g.img, &g.bpp, &g.val, &g.ed)) == NULL)
 	{
 		ft_putstr("MAP ERROR\n");
 		exit(0);
 	}
-	read_map(&g, argv[1]);
-	if ((g.init = mlx_init()) == NULL ||
-		(g.win = mlx_new_window(g.init,
-		g.size_x, g.size_y, "Wolf3D")) == NULL || (g.img =
-		mlx_new_image(g.init, g.size_x, g.size_y)) == NULL ||
-		(g.image = mlx_get_data_addr(g.img, &g.bpp, &g.val,
-		&g.ed)) == NULL)
-		return (0);
 	ft_clearscr(&g);
 	ft_textures(&g);
 	raycaster(&g);
@@ -72,29 +68,13 @@ int		key_hook(int key, void *ptr)
 		exit(0);
 	}
 	else if (key == 13)
-	{
-		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_move(g, 0.2);
-		ft_screen_stuff(g);
-	}
 	else if (key == 1)
-	{
-		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_move(g, -0.2);
-		ft_screen_stuff(g);
-	}
 	else if (key == 2)
-	{
-		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_turn(g, -0.078539816339745);
-		ft_screen_stuff(g);
-	}
 	else if (key == 0)
-	{
-		printf("\n\n\n=== KEY PRESSED ===\n\n\n");
 		ft_turn(g, 0.078539816339745);
-		ft_screen_stuff(g);
-	}
 	return (0);
 }
 

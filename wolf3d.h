@@ -108,5 +108,6 @@ void				ft_turn(t_general *g, double turn);
 void				print_arr(int **arr, int i, int j); // delete me)
 void				ft_textures(t_general *g);
 void				ft_clean_buffer(t_general *g);
+void				ft_texture_validation(t_general *g);
 
 #endif

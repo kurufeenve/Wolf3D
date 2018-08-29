@@ -25,7 +25,7 @@ int		validation(t_general *g, char *filename)
 		{
 			if (ft_isnumber(g->buff[g->i]) == 1 || g->buff[g->i][0] == 'P')
 				g->len_buff++;
-			else if (ft_isalpha(g->buff[g->i][0]) == 1 && g->buff[g->i][0] != 'P')
+			if (ft_isalpha(g->buff[g->i][0]) == 1 && g->buff[g->i][0] != 'P')
 				return (0);
 			g->i++;
 		}
@@ -33,8 +33,7 @@ int		validation(t_general *g, char *filename)
 			g->len = g->len_buff;
 		else if (g->len_buff != 0 && g->len != g->len_buff)
 			return (0);
-		if (g->line != NULL)
-			g->rows++;
+		g->line != NULL ? g->rows++ : 1;
 		ft_strdel(&g->line);
 		ft_chararrdel(g->buff, &g->buff);
 	}
