@@ -88,3 +88,35 @@ void	print_arr(int **arr, int i, int j)
 		y++;
 	}
 }
+
+void	ft_init(t_general *g)
+{
+	g->dir_x = -1;
+	g->dir_y = 0;
+	g->plane_x = 0;
+	g->plane_y = 0.66;
+	g->size_x = 1024;
+	g->size_y = 768;
+	g->text_w = 64;
+	g->text_h = 64;
+}
+
+int		super_validation(t_general *g, char *file_name)
+{
+	if (validation(g, file_name) != 1)
+		return (0);
+	else if (read_map(g, file_name) == 0)
+		return (0);
+	else if ((g->init = mlx_init()) == NULL)
+		return (0);
+	else if ((g->win = mlx_new_window(g->init, g->size_x, g->size_y, \
+	"Wolf3D")) == NULL)
+		return (0);
+	else if ((g->img = mlx_new_image(g->init, g->size_x, g->size_y)) == NULL)
+		return (0);
+	else if ((g->image = mlx_get_data_addr(g->img, &g->bpp, &g->val, \
+	&g->ed)) == NULL)
+		return (0);
+	else
+		return (1);
+}

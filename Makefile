@@ -14,7 +14,7 @@ NAME = wolf3d
 
 HEADER = wolf3d.h
 
-SRC = main.c map.c raycaster.c screen_stuff.c
+SRC = main.c map.c raycaster.c screen_stuff.c func_for_raycast.c
 
 SRCDIR = src
 

@@ -40,14 +40,14 @@ typedef struct		s_general
 	int				bpp;
 	int				val;
 	int				ed;
-    int             fd;
-    char            *line;
-    int             len_buff;
-    int             i;
+	int				fd;
+	char			*line;
+	int				len_buff;
+	int				i;
 	int				j;
-    char            **buff;
-    int             len;
-    int             rows;
+	char			**buff;
+	int				len;
+	int				rows;
 	int				**points;
 	double			pos_x;
 	double			pos_y;
@@ -76,8 +76,8 @@ typedef struct		s_general
 	int				draw_end;
 	double			frame_time;
 	int				**scr_buff;
-	int				text_w; //texture width
-	int				text_h; //texture heght
+	int				text_w;
+	int				text_h;
 	char			**textures;
 	int				xor_color;
 	int				y_color;
@@ -97,7 +97,7 @@ typedef struct		s_general
 int					exit_x(void);
 int					key_hook(int key, void *ptr);
 void				put_pixel(t_general *g, int x, int y, t_color color);
-int		            validation(t_general *g, char *filename);
+int					validation(t_general *g, char *filename);
 int					read_map(t_general *g, char *filename);
 void				raycaster(t_general *g);
 void				buffer_draw(t_general *g);
@@ -109,5 +109,12 @@ void				print_arr(int **arr, int i, int j); // delete me)
 void				ft_textures(t_general *g);
 void				ft_clean_buffer(t_general *g);
 void				ft_texture_validation(t_general *g);
+void				four_textures(t_general *g);
+void				ft_hit(t_general *g);
+void				ft_ray(t_general *g);
+void				a_bunch_of_stuff(t_general *g);
+void				text_map_and_color(t_general *g);
+void				ft_init(t_general *g);
+int					super_validation(t_general *g, char *file_name);
 
 #endif

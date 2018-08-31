@@ -12,26 +12,15 @@
 
 #include "wolf3d.h"
 
-int		main(int argc, char** argv)
+int		main(int argc, char **argv)
 {
 	t_general	g;
 
-	g.dir_x = -1;
-	g.dir_y = 0;
-	g.plane_x = 0;
-	g.plane_y = 0.66;
-	g.size_x = 1024;
-	g.size_y = 768;
-	g.text_w = 64;
-	g.text_h = 64;
+	ft_init(&g);
 	ft_int_arr(&g.scr_buff, g.size_x, g.size_y);
-	if (argc != 2 || validation(&g, argv[1]) != 1 || read_map(&g, argv[1]) == 0
-		|| (g.init = mlx_init()) == NULL || (g.win = mlx_new_window(g.init,
-		g.size_x, g.size_y, "Wolf3D")) == NULL || (g.img = mlx_new_image(
-		g.init, g.size_x, g.size_y)) == NULL || (g.image = 
-		mlx_get_data_addr(g.img, &g.bpp, &g.val, &g.ed)) == NULL)
+	if (argc != 2 || super_validation(&g, argv[1]) != 1)
 	{
-		ft_putstr("MAP ERROR\n");
+		ft_putstr("ERROR\n");
 		exit(0);
 	}
 	ft_clearscr(&g);
