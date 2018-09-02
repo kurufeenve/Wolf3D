@@ -71,3 +71,20 @@ void	ft_clean_buffer(t_general *g)
 		g->j++;
 	}
 }
+
+// int		additional_map_validation(char *file_name, t_general *g)
+// {
+// 	int		trigger;
+
+// 	if ((g->fd = open(file_name, O_RDONLY)) <= 0)
+// 		return (0);
+// 	while (get_next_line(g->fd, &g->line) > 0)
+// 	{
+// 		g->i = 0;
+// 		while (g->line[g->i] != '\0')
+// 		{
+// 			printf("%c", g->line[g->i]);
+
+// 		}
+// 	}
+// }
