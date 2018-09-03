@@ -116,5 +116,8 @@ void				a_bunch_of_stuff(t_general *g);
 void				text_map_and_color(t_general *g);
 void				ft_init(t_general *g);
 int					super_validation(t_general *g, char *file_name);
+int					additional_map_validation(char *file_name, t_general *g);
+int					ft_space_check(t_general *g, char *filename);
+int					wall_validation(t_general *g);
 
 #endif

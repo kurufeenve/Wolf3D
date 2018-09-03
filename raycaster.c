@@ -72,19 +72,47 @@ void	ft_clean_buffer(t_general *g)
 	}
 }
 
-// int		additional_map_validation(char *file_name, t_general *g)
-// {
-// 	int		trigger;
+int		additional_map_validation(char *file_name, t_general *g)
+{
+	int		trigger;
 
-// 	if ((g->fd = open(file_name, O_RDONLY)) <= 0)
-// 		return (0);
-// 	while (get_next_line(g->fd, &g->line) > 0)
-// 	{
-// 		g->i = 0;
-// 		while (g->line[g->i] != '\0')
-// 		{
-// 			printf("%c", g->line[g->i]);
+	trigger = 0;
+	if ((g->fd = open(file_name, O_RDONLY)) <= 0)
+		return (0);
+	while (get_next_line(g->fd, &g->line) > 0)
+	{
+		g->i = 0;
+		while (g->line[g->i] != '\0')
+		{
+			if (g->line[g->i] == 'P' && trigger == 1)
+				return (0);
+			else if (g->line[g->i] == 'P' && trigger == 0)
+				trigger = 1;
+			g->i++;
+		}
+		ft_strdel(&g->line);
+	}
+	if (trigger == 0)
+		return (0);
+	return (1);
+}
 
-// 		}
-// 	}
-// }
+int		wall_validation(t_general *g)
+{
+	g->j = 0;
+	while (g->j < g->rows)
+	{
+		g->i = 0;
+		if (g->j == 0 || g->j == (g->rows - 1))
+			while (g->i < g->len)
+			{
+				if (g->points[g->i * (g->j + 1)] == 0)
+					return (0);
+				g->i++;
+			}
+		else if (g->points[(g->j + 1) * 3] == 0 || g->points[(g->j + 1) * 3 + 2] == 0)
+			return (0);
+		g->j++;
+	}
+	return (1);
+}

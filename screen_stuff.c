@@ -87,6 +87,8 @@ void	ft_texture_validation(t_general *g)
 			ft_putstr("!!!    ===\n\n\n");
 			trigger = 1;
 		}
+		else
+			trigger = 0;
 		g->i++;
 	}
 	if (trigger == 1)

@@ -18,8 +18,8 @@ int		validation(t_general *g, char *filename)
 		return (0);
 	while (get_next_line(g->fd, &g->line) > 0)
 	{
-		g->len_buff = 0;
 		g->i = 0;
+		g->len_buff = 0;
 		g->buff = ft_strsplit(g->line, ' ');
 		while (g->buff[g->i] != NULL)
 		{
@@ -37,7 +37,6 @@ int		validation(t_general *g, char *filename)
 		ft_strdel(&g->line);
 		ft_chararrdel(g->buff, &g->buff);
 	}
-	close(g->fd);
 	return (1);
 }
 
@@ -89,6 +88,28 @@ void	print_arr(int **arr, int i, int j)
 	}
 }
 
+int		ft_space_check(t_general *g, char *filename)
+{
+	int		i;
+
+	if ((g->fd = open(filename, O_RDONLY)) <= 0)
+		return (0);
+	while (get_next_line(g->fd, &g->line) > 0)
+	{
+		i = 0;
+		while (g->line[i] != '\0')
+		{
+			if (g->line[i] != ' ' && (g->line[i + 1] != ' ' && g->line[i + 1] != '\0'))
+				return (0);
+			else if (g->line[i] == ' ' && g->line[i + 1] == ' ')
+				return (0);
+			i++;
+		}
+		ft_strdel(&g->line);
+	}
+	return (1);
+}
+
 void	ft_init(t_general *g)
 {
 	g->dir_x = -1;
@@ -99,13 +120,20 @@ void	ft_init(t_general *g)
 	g->size_y = 768;
 	g->text_w = 64;
 	g->text_h = 64;
+	g->len_buff = 0;
 }
 
 int		super_validation(t_general *g, char *file_name)
 {
-	if (validation(g, file_name) != 1)
+	if (ft_space_check(g, file_name) != 1)
+		return (0);
+	else if (validation(g, file_name) != 1)
+		return (0);
+	else if (additional_map_validation(file_name, g) != 1)
 		return (0);
 	else if (read_map(g, file_name) == 0)
+		return (0);
+	else if (wall_validation(g) != 1)
 		return (0);
 	else if ((g->init = mlx_init()) == NULL)
 		return (0);
