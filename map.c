@@ -55,8 +55,8 @@ int		read_map(t_general *g, char *filename)
 		{
 			if (g->buff[g->i][0] == 'P')
 			{
-				g->pos_x = g->i;
-				g->pos_y = g->j;
+				g->pos_x = g->i + 0.5;
+				g->pos_y = g->j + 0.5;
 				g->buff[g->i][0] = '0';
 			}
 			g->points[g->j][g->i] = ft_atoi(g->buff[g->i]);

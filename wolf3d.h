@@ -79,6 +79,7 @@ typedef struct		s_general
 	int				text_w;
 	int				text_h;
 	char			**textures;
+	char			**textures2;
 	int				xor_color;
 	int				y_color;
 	int				xy_color;

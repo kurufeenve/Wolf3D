@@ -47,28 +47,34 @@ void	ft_turn(t_general *g, double turn)
 
 void	ft_textures(t_general *g)
 {
-	g->textures = (char **)malloc(sizeof(char *) * 8);
-	g->textures[0] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/bluestone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
+	g->textures = (char **)malloc(sizeof(char *) * 9);
+	g->textures[0] = mlx_xpm_file_to_image(g->init, "tex/bluestone.xpm", &g->text_w, &g->text_h);
+	ft_texture_validation(g);
+	g->textures[0] = mlx_get_data_addr(g->textures[0], &g->t_bpp, &g->t_val, \
 	&g->t_ed);
-	g->textures[1] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/colorstone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
-	&g->t_ed);
-	g->textures[2] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/eagle.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
-	g->textures[3] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/greystone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
-	&g->t_ed);
-	g->textures[4] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/mossy.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
-	g->textures[5] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/purplestone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
-	&g->t_ed);
-	g->textures[6] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/redbrick.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
-	&g->t_ed);
-	g->textures[7] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
-	"tex/wood.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
+	// g->textures[0] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/bluestone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
+	// &g->t_ed);
+	// g->textures[1] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/colorstone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
+	// &g->t_ed);
+	// g->textures[2] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/eagle.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
+	// g->textures[3] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/greystone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
+	// &g->t_ed);
+	// g->textures[4] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/mossy.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
+	// g->textures[5] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/purplestone.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
+	// &g->t_ed);
+	// g->textures[6] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/redbrick.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, \
+	// &g->t_ed);
+	// g->textures[7] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/wood.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
+	// g->textures[8] = mlx_get_data_addr(mlx_xpm_file_to_image(g->init, \
+	// "tex/Elon.xpm", &g->text_w, &g->text_h), &g->t_bpp, &g->t_val, &g->t_ed);
 	ft_texture_validation(g);
 }
 
@@ -78,7 +84,7 @@ void	ft_texture_validation(t_general *g)
 
 	trigger = 0;
 	g->i = 0;
-	while (g->i < 8)
+	while (g->i < 9)
 	{
 		if (g->textures[g->i] == NULL)
 		{
@@ -87,8 +93,6 @@ void	ft_texture_validation(t_general *g)
 			ft_putstr("!!!    ===\n\n\n");
 			trigger = 1;
 		}
-		else
-			trigger = 0;
 		g->i++;
 	}
 	if (trigger == 1)

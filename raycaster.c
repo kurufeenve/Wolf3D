@@ -106,11 +106,11 @@ int		wall_validation(t_general *g)
 		if (g->j == 0 || g->j == (g->rows - 1))
 			while (g->i < g->len)
 			{
-				if (g->points[g->i * (g->j + 1)] == 0)
+				if (g->points[g->j][g->i] == 0)
 					return (0);
 				g->i++;
 			}
-		else if (g->points[(g->j + 1) * 3] == 0 || g->points[(g->j + 1) * 3 + 2] == 0)
+		else if (g->points[g->j][0] == 0 || g->points[g->j][g->len - 1] == 0)
 			return (0);
 		g->j++;
 	}
