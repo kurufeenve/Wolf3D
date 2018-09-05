@@ -69,25 +69,6 @@ int		read_map(t_general *g, char *filename)
 	return (1);
 }
 
-void	print_arr(int **arr, int i, int j)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < j)
-	{
-		x = 0;
-		while (x < i)
-		{
-			printf("%d ", arr[y][x]);
-			x++;
-		}
-		printf("\n\n");
-		y++;
-	}
-}
-
 int		ft_space_check(t_general *g, char *filename)
 {
 	int		i;
@@ -99,7 +80,8 @@ int		ft_space_check(t_general *g, char *filename)
 		i = 0;
 		while (g->line[i] != '\0')
 		{
-			if (g->line[i] != ' ' && (g->line[i + 1] != ' ' && g->line[i + 1] != '\0'))
+			if (g->line[i] != ' ' && (g->line[i + 1] != ' ' &&
+			g->line[i + 1] != '\0'))
 				return (0);
 			else if (g->line[i] == ' ' && g->line[i + 1] == ' ')
 				return (0);
@@ -121,6 +103,12 @@ void	ft_init(t_general *g)
 	g->text_w = 64;
 	g->text_h = 64;
 	g->len_buff = 0;
+	g->error_message = ft_strnew(205);
+	g->error_message = ft_strcpy(g->error_message, \
+	"\n!!!ERROR!!!\nmax 9 textures allowed\n'P' should be on the map but not \
+on the wall\nThere should be only one player on the map\n\
+Walls should have textures except for 0, - or +\nOne space should be \
+between the numbers\n\n");
 }
 
 int		super_validation(t_general *g, char *file_name)

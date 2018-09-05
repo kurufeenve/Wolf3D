@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 	ft_int_arr(&g.scr_buff, g.size_x, g.size_y);
 	if (argc != 2 || super_validation(&g, argv[1]) != 1)
 	{
-		ft_putstr("ERROR\n");
+		ft_putstr(g.error_message);
 		exit(0);
 	}
 	ft_clearscr(&g);
@@ -42,7 +42,6 @@ void	put_pixel(t_general *g, int x, int y, t_color color)
 
 int		exit_x(void)
 {
-	system("leaks wolf3d");
 	exit(1);
 }
 
@@ -52,10 +51,7 @@ int		key_hook(int key, void *ptr)
 
 	g = ptr;
 	if (key == 53)
-	{
-		system("leaks wolf3d");
 		exit(0);
-	}
 	else if (key == 13)
 		ft_move(g, 0.2);
 	else if (key == 1)

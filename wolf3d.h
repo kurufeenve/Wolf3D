@@ -20,7 +20,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <mlx.h>
 
 typedef	union		u_color
@@ -92,6 +91,7 @@ typedef struct		s_general
 	int				t_bpp;
 	int				t_val;
 	int				t_ed;
+	char			*error_message;
 	t_color			color;
 }					t_general;
 
@@ -106,7 +106,6 @@ void				ft_clearscr(t_general *gen);
 void				ft_screen_stuff(t_general *g);
 void				ft_move(t_general *g, double move);
 void				ft_turn(t_general *g, double turn);
-void				print_arr(int **arr, int i, int j); // delete me)
 void				ft_textures(t_general *g);
 void				ft_clean_buffer(t_general *g);
 void				ft_texture_validation(t_general *g);
@@ -120,5 +119,6 @@ int					super_validation(t_general *g, char *file_name);
 int					additional_map_validation(char *file_name, t_general *g);
 int					ft_space_check(t_general *g, char *filename);
 int					wall_validation(t_general *g);
+void				get_textures(t_general *g);
 
 #endif
