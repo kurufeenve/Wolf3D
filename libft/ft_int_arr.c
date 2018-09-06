@@ -19,7 +19,7 @@ void		ft_int_arr(int ***arr, int x, int y)
 
 	j = 0;
 	if (!(*arr = (int **)malloc(sizeof(int *) * y)))
-			exit(0);
+		exit(0);
 	while (j < y)
 	{
 		if (!((*arr)[j] = (int *)malloc(sizeof(int) * x)))
