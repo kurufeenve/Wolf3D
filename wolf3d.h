@@ -21,6 +21,7 @@
 # include <sys/stat.h>
 # include <stdlib.h>
 # include <mlx.h>
+# include <stdio.h>
 
 typedef	union		u_color
 {
@@ -28,8 +29,16 @@ typedef	union		u_color
 	unsigned char	channel[4];
 }					t_color;
 
+typedef struct		s_sprite
+{
+	double			pos_x;
+	double			pos_y;
+	double			distance;
+}					t_sprite;
+
 typedef struct		s_general
 {
+	t_sprite		sprite;
 	void			*init;
 	void			*win;
 	int				size_x;
@@ -78,7 +87,7 @@ typedef struct		s_general
 	int				text_w;
 	int				text_h;
 	char			**textures;
-	char			**textures2;
+	char			*sprites;
 	int				xor_color;
 	int				y_color;
 	int				xy_color;
@@ -120,5 +129,6 @@ int					additional_map_validation(char *file_name, t_general *g);
 int					ft_space_check(t_general *g, char *filename);
 int					wall_validation(t_general *g);
 void				get_textures(t_general *g);
+void				distance_to_sprite(t_general *g);
 
 #endif

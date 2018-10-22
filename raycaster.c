@@ -15,6 +15,7 @@
 void	raycaster(t_general *g)
 {
 	g->i = 0;
+	distance_to_sprite(g);
 	while (g->i < g->size_x)
 	{
 		g->camera_x = 2 * g->i / (double)g->size_x - 1;
@@ -115,4 +116,13 @@ int		wall_validation(t_general *g)
 		g->j++;
 	}
 	return (1);
+}
+
+void	distance_to_sprite(t_general *g)
+{
+	g->sprite.distance = sqrt((g->sprite.pos_x - g->pos_x) * (g->sprite.pos_x - g->pos_x) +
+	(g->sprite.pos_y - g->pos_y) * (g->sprite.pos_y - g->pos_y));
+	printf("g->sprite.pos_x = %f, g->sprite.pos_y = %f, g->pos_x = %f, g->pos_y = %f\
+g->sprite.distance = %f\n",
+	g->sprite.pos_x, g->sprite.pos_y, g->pos_x, g->pos_y, g->sprite.distance);
 }

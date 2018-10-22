@@ -29,6 +29,11 @@ void	ft_texture_validation(t_general *g)
 		}
 		g->i++;
 	}
+	if (g->sprites == NULL)
+	{
+		ft_putstr("\n\n\n===    !!!Failed to upload sprite!!!    ===\n\n\n");
+		trigger = 1;
+	}
 	if (trigger == 1)
 		exit(0);
 }

@@ -66,6 +66,8 @@ void	ft_textures(t_general *g)
 	"tex/wood.xpm", &g->text_w, &g->text_h);
 	g->textures[8] = mlx_xpm_file_to_image(g->init, \
 	"tex/Elon.xpm", &g->text_w, &g->text_h);
+	g->sprites = mlx_xpm_file_to_image(g->init, \
+	"tex/barrel.xpm", &g->text_w, &g->text_h);
 	ft_texture_validation(g);
 	get_textures(g);
 }
@@ -90,4 +92,5 @@ void	get_textures(t_general *g)
 	&g->t_ed);
 	g->textures[8] = mlx_get_data_addr(g->textures[8], &g->t_bpp, &g->t_val, \
 	&g->t_ed);
+	g->sprites = mlx_get_data_addr(g->sprites, &g->t_bpp, &g->t_val, &g->t_ed);
 }
