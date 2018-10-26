@@ -107,6 +107,7 @@ void	ft_init(t_general *g)
 	g->sprite.pos_x = 15;
 	g->sprite.pos_y = 7;
 	g->sprites = NULL;
+	g->Zbuffer = (double *)malloc(sizeof(double) * g->size_x);
 	g->error_message = ft_strcpy(g->error_message, \
 	"\n!!!ERROR!!!\nmax 9 textures allowed\n'P' should be on the map but not \
 on the wall\nThere should be only one player on the map\n\

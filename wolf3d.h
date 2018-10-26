@@ -34,6 +34,22 @@ typedef struct		s_sprite
 	double			pos_x;
 	double			pos_y;
 	double			distance;
+	double			spritex;
+	double			spritey;
+	double			invDet;
+	double			transformx;
+	double			transformy;
+	int				sprite_screen_x;
+	int				sprite_width;
+	int				sprite_height;
+	int				draw_start_X;
+	int				draw_end_X;
+	int				draw_start_Y;
+	int				draw_end_Y;
+	int				stripe;
+	int				pixel;
+	int				tex_x;
+	int				tex_y;
 }					t_sprite;
 
 typedef struct		s_general
@@ -88,6 +104,7 @@ typedef struct		s_general
 	int				text_h;
 	char			**textures;
 	char			*sprites;
+	double			*Zbuffer;
 	int				xor_color;
 	int				y_color;
 	int				xy_color;

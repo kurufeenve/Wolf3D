@@ -126,3 +126,50 @@ void	distance_to_sprite(t_general *g)
 g->sprite.distance = %f\n",
 	g->sprite.pos_x, g->sprite.pos_y, g->pos_x, g->pos_y, g->sprite.distance);
 }
+
+void	draw_the_sprites(t_general *g)
+{
+	g->sprite.spritex = g->sprite.pos_x - g->pos_x;
+	g->sprite.spritey = g->sprite.pos_y - g->pos_y;
+	g->sprite.invDet = 1.0 / (g->plane_x * g->dir_y - g->plane_y * g->dir_x);
+	g->sprite.transformx = g->sprite.invDet * (g->dir_y * g->sprite.spritex - g->dir_x *
+	g->sprite.spritey);
+	g->sprite.transformy = g->sprite.invDet * (-g->plane_y * g->sprite.spritex + g->plane_x *
+	g->sprite.spritey);
+	g->sprite.sprite_screen_x = (int)((g->size_x / 2) * (1 + g->sprite.transformx /
+	g->sprite.transformy));
+
+	g->sprite.sprite_height = abs((int)(g->size_y / g->sprite.transformy));
+	g->sprite.draw_start_Y = -g->sprite.sprite_height / 2 + g->size_y / 2;
+	if (g->sprite.draw_start_Y < 0)
+		g->sprite.draw_start_Y = 0;
+	g->sprite.draw_end_Y = g->sprite.sprite_height / 2 + g->size_y / 2;
+	if (g->sprite.draw_end_Y > g->size_y)
+		g->sprite.draw_end_Y = g->size_y - 1;
+
+	g->sprite.sprite_width = abs((int)(g->size_y / g->sprite.transformy));
+	g->sprite.draw_start_X = -g->sprite.sprite_width / 2 + g->sprite.sprite_screen_x;
+	if (g->sprite.draw_start_X < 0)
+		g->sprite.draw_start_X = 0;
+	g->sprite.draw_end_X = g->sprite.sprite_width / 2 + g->sprite.sprite_screen_x;
+	if (g->sprite.draw_end_X < 0)
+		g->sprite.draw_end_X = g->size_x - 1;
+	g->sprite.stripe = g->sprite.draw_start_X;
+	while (g->sprite.stripe < g->sprite.draw_end_X)
+	{
+		g->sprite.tex_x = (int)(256 * (g->sprite.stripe - (-g->sprite.sprite_width / 2 +
+		g->sprite.sprite_screen_x) * g->text_w / g->sprite.sprite_width) / 256);
+		if (g->sprite.transformy > 0 && g->sprite.stripe > 0 && g->sprite.stripe < 
+		g->size_x && g->sprite.transformy < g->Zbuffer[g->sprite.stripe])
+		{
+			g->sprite.pixel = g->sprite.draw_start_Y;
+			while (g->sprite.pixel < g->sprite.draw_end_Y)
+			{
+				g->sprite.tex_y = (((g->sprite.pixel * 256 - g->size_y * 128 + g->sprite.sprite_height *
+				128) * g->text_h) / g->sprite.sprite_height) / 256;
+				g->sprite.pixel++;
+			}
+		}
+		g->sprite.stripe++;
+	}
+}

@@ -81,6 +81,7 @@ void	a_bunch_of_stuff(t_general *g)
 	else
 		g->perp_wall_dist = (g->map_y - g->pos_y + (1 - g->step_y) / 2) \
 		/ g->ray_dir_y;
+	g->Zbuffer[g->i] = g->perp_wall_dist;
 	g->line_height = (int)(g->size_y / g->perp_wall_dist);
 	g->draw_start = -g->line_height / 2 + g->size_y / 2;
 	g->draw_end = g->line_height / 2 + g->size_y / 2;
