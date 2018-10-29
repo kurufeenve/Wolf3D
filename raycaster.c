@@ -36,6 +36,7 @@ void	raycaster(t_general *g)
 		text_map_and_color(g);
 		g->i++;
 	}
+	draw_the_sprites(g);
 	buffer_draw(g);
 	ft_clean_buffer(g);
 }
@@ -165,8 +166,11 @@ void	draw_the_sprites(t_general *g)
 			g->sprite.pixel = g->sprite.draw_start_Y;
 			while (g->sprite.pixel < g->sprite.draw_end_Y)
 			{
-				g->sprite.tex_y = (((g->sprite.pixel * 256 - g->size_y * 128 + g->sprite.sprite_height *
-				128) * g->text_h) / g->sprite.sprite_height) / 256;
+				g->sprite.tex_y = (((g->sprite.pixel * 256 - g->size_y * 128 +
+				g->sprite.sprite_height * 128) * g->text_h) / g->sprite.sprite_height) / 256;
+				g->sprite.color.color = g->sprites[g->sprite.sprite_width * g->sprite.tex_y +
+				g->sprite.tex_x];
+				g->scr_buff[g->sprite.pixel][g->sprite.stripe] = g->sprite.color.color;
 				g->sprite.pixel++;
 			}
 		}

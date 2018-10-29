@@ -50,6 +50,7 @@ typedef struct		s_sprite
 	int				pixel;
 	int				tex_x;
 	int				tex_y;
+	t_color			color;
 }					t_sprite;
 
 typedef struct		s_general
@@ -147,5 +148,6 @@ int					ft_space_check(t_general *g, char *filename);
 int					wall_validation(t_general *g);
 void				get_textures(t_general *g);
 void				distance_to_sprite(t_general *g);
+void				draw_the_sprites(t_general *g);
 
 #endif
